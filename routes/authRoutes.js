@@ -1,6 +1,10 @@
+const AuthControllers = require("../controllers/AuthControllers");
+
 const router = require ("express").router();
 
-router.post("/cadastro", (req, res) => {});
-router.post("/login", (req, res) => {});
+const AuthControllers
+
+router.post("/cadastro", AuthControllers.cadastro);
+router.post("/login", AuthControllers.login);
 
 MediaSourceHandle.exports = router;
