@@ -1,5 +1,4 @@
-const {PrismaClient} = require('@prisma/client');
-const prisma = new PrismaClient();
+const prisma = require('../prisma/prismaClient');
 const bcryptjs = require('bcryptjs');
 const jwt = require("jsonwebtoken")
 
@@ -8,21 +7,21 @@ static async cadastro(req, res) {
     const {nome, email,  password} = req.body;
 
     if(!nome || !email || !password) {
-        return res.status(400).json({
+        return res.status(422).json({
             error: true,
             mensagem: 'Preencha todos os campos'
         });
     }
 
     if(!email || email.length < 5) {
-        return res.status(400).json({
+        return res.status(422).json({
             error: true,
             mensagem: 'Email inválido'
         });
     }
 
     if(!password || password.length < 8) {
-        return res.status(400).json({
+        return res.status(422).json({
             error: true,
             mensagem: 'Senha inválido'
         });
@@ -35,7 +34,7 @@ static async cadastro(req, res) {
     })
 
     if(existe != 0) {
-        return res.status(400).json({
+        return res.status(422).json({
             error: true,
             mensagem: 'Email já cadastrado'
         });
@@ -64,7 +63,7 @@ static async cadastro(req, res) {
         });
     
         
-        return res.json({
+        return res.status(201).json({
             error: false,
             mensagem: 'Usuario cadastrado',
             token: token
@@ -73,7 +72,7 @@ static async cadastro(req, res) {
         
 
     }catch(error){
-        return res.json({
+        return res.status(500).json({
             error: true,
             mensagem: 'Erro ao cadastrar usuário' + error,
         });
@@ -85,21 +84,21 @@ static async login(req, res) {
     const { email, password } = req.body;
 
     if (!email || !password) {
-        return res.status(400).json({
+        return res.status(422).json({
             error: true,
             mensagem: 'Preencha todos os campos'
         });
     }
 
     if (email.length < 5) {
-        return res.status(400).json({
+        return res.status(422).json({
             error: true,
             mensagem: 'Email inválido'
         });
     }
 
     if (password.length < 8) {
-        return res.status(400).json({
+        return res.status(422).json({
             error: true,
             mensagem: 'Senha curta'
         });
@@ -112,7 +111,7 @@ static async login(req, res) {
     });
 
     if (!usuario) {
-        return res.status(400).json({
+        return res.status(422).json({
             error: true,
             mensagem: 'Usuário não cadastrado'
         });
@@ -121,7 +120,7 @@ static async login(req, res) {
     const senhaCorreta =  bcryptjs.compareSync(password, usuario.password);
 
     if (!senhaCorreta) {
-        return res.status(400).json({
+        return res.status(422).json({
             error: true,
             mensagem: 'Senha incorreta'
         });
@@ -136,7 +135,7 @@ static async login(req, res) {
         expiresIn: '1d'
     });
 
-    return res.json({
+    return res.status(200).json({
         error: false,
         mensagem: 'Usuário logado',
         token: token
