@@ -1,0 +1,46 @@
+[
+  {
+    "id": 1,
+    "nome": "João",
+    "email": "joao@example.com",
+    "password": "123456",
+    "tipo": "cliente"
+  },
+  {
+    "id": 2,
+    "nome": "Victor",
+    "email": "victor@example.com",
+    "password": "123456",
+    "tipo": "cliente"
+  },
+  {
+    "id": 3,
+    "nome": "Vagner Felipe",
+    "email": "vagner.felipe@gmail.com",
+    "password": "$2a$10$IAQrWlKM6CVj5kn6q5TQMePcD3FJ8jmUlhiPB0G.Zas5kmzgCO9Se",
+    "tipo": "cliente"
+  },
+  {
+    "id": 4,
+    "nome": "Jean Felipe",
+    "email": "Jean.felipe@gmail.com",
+    "password": "$2a$10$vnUvUzsID3FudIpogAhehOb.ydukq8h7bEtPSBtP9saQ0y6YlHL5a",
+    "tipo": "cliente"
+  },
+  {
+    "id": 5,
+    "nome": "Carlos Felipe",
+    "email": "carlos.felipe@gmail.com",
+    "password": "$2a$10$DnFre07CBQxiLyiEKPktxuwFHy5gqQpBxuRlvVGxKLUuEPFMON.3.",
+    "tipo": "cliente"
+  }
+]
+
+{
+    "id": 6,
+    "nome": "Victor Felipe",
+    "email": "victor.felipe@gmail.com",
+     "password": "senhaforte"
+    "password": "$2a$10$QxfZO1tpb1ayg4ns/abBuOVYn60s9OtKqWzQ9ajYm3dSwT7p7nYlO",
+    "tipo": "cliente"
+  }
