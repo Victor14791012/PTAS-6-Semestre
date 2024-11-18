@@ -135,11 +135,13 @@ static async login(req, res) {
         expiresIn: '1d'
     });
 
-    return res.status(200).json({
-        error: false,
-        mensagem: 'Usuário logado',
-        token: token
-    });
+   return res.status(200).json({
+  error: false,
+  mensagem: 'Usuário logado',
+  token: token,
+  nome: usuario.nome 
+});
+
 }
 
 }
