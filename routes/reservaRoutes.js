@@ -7,6 +7,7 @@ const ReservaController = require('../controllers/ReservaController');
 
 router.post('/novo', AuthController.autenticar, ReservaController.novaReserva);
 router.post('/minhas_reservas', AuthController.autenticar, ReservaController.minhasReservas);
+router.delete('/minhas_reservas', AuthController.autenticar, ReservaController.cancelar);
 
 
 module.exports = router
