@@ -19,8 +19,8 @@ app.use(express.json());
 
 
 app.use('/auth', authRoutes);
-app.use('/perfil',AuthController.autenticar, perfilRoutes);
-app.use('/mesa',AuthController.autenticar , mesaRoutes);
+app.use('/perfil', perfilRoutes);
+app.use('/mesa', mesaRoutes);
 
 app.get('/privado', AuthController.autenticar,  (req, res) => {
   res.json({ mensagem: 'Rota privada acessada com sucesso' });

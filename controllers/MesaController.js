@@ -67,6 +67,23 @@ const jwt = require("jsonwebtoken")
 
         }
 
+        static async buscarMesas(req, res) {
+            try {
+                const mesas = await prisma.mesa.findMany();
+                return res.status(200).json({
+                    erro: false,
+                    mensagem: "Mesas recuperadas com sucesso!",
+                    mesas,
+                });
+            } catch (error) {
+                return res.status(500).json({
+                    erro: true,
+                    mensagem: "Erro ao buscar mesas.",
+                    detalhe: error.message,
+                });
+            }
+        }
+
 
         }
 
