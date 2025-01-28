@@ -168,6 +168,21 @@ static async autenticar(req, res, next) {
 
 
     };
+
+    static async autenticarAdm (req, res, next){
+        const usuario = await prisma.usuario.findUnique({
+            where : { id: req.usuarioId },
+        });
+
+        if(usuario.tipo === "adm"){
+            next()
+        }else{
+            return res.status(401).json({
+                erro: true,
+                mensagem: "Usuário sem permissão para acessar rota" 
+            })
+        }
+    }
 }
 
 module.exports = AuthController
