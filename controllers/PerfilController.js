@@ -47,13 +47,35 @@ class PerfilController {
                     password: hashPassword || password
                 }
             });
-            res.json(perfil);
+            return res.status(200).json({
+                erro: false,
+                mensagem: "Perfil atualizado com sucesso.",
+                usuario: {
+                    id: usuarioAtualizado.id,
+                    nome: usuarioAtualizado.nome,
+                    email: usuarioAtualizado.email
+                }
+            });
         } catch (error) {
             console.error(error);
-            res.status(500).json({ msg: 'Erro ao atualizar perfil' });
+            res.status(500).json({erro: true, msg: 'Erro ao atualizar perfil' });
         }
 
 
+    }
+
+    static async buscarUsuarios(req, res) {
+        try {
+            const usuarios = await prisma.usuario.findMany();
+            return res.status(200).json({
+                erro: false,
+                mensagem: "Usuarios recuperados com sucesso!",
+                usuarios
+            });
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({erro: true, msg: 'Erro ao buscar usuarios' });
+        }
     }
 
 

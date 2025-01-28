@@ -84,6 +84,40 @@ const jwt = require("jsonwebtoken")
             }
         }
 
+        static async buscarMesaporData(req, res) {
+            const {data} = req.body;
+
+            if (!data) {
+                return res.status(422).json({
+                    erro: true,
+                    mensagem: "A data deve ser informada no formato YYYY-MM-DD.",
+                });
+            }
+
+            try {
+                const mesas = await prisma.mesa.findMany({
+                    include: {
+                        reservas: {
+                            where: {
+                                data: new Date(data),
+                            },
+                        },
+                    },
+                });
+                return res.status(200).json({
+                    erro: false,
+                    mensagem: "Mesas recuperadas com sucesso!",
+                    mesas,
+                });
+            } catch (error) {
+                return res.status(500).json({
+                    erro: true,
+                    mensagem: "Erro ao buscar mesas.",
+                    detalhe: error.message,
+                });
+            }
+        }
+
 
         }
 
