@@ -156,6 +156,42 @@ class ReservaController {
         }
     }
 
+    static async minhasReservasporData(req , res){
+        const { data } = req.body;
+        const usuarioId = req.usuarioId;
+
+        if (!data) {
+            return res.status(401).json({
+                erro: true,
+                mensagem: "coloque a data yyyy-mm-dd",
+            });
+        }
+
+        const reservas = await prisma.reserva.findMany({
+            where: {
+                usuarioId ,
+                data: new Date(data)
+                },
+                include: {
+                    mesa: true,
+                },
+        })
+
+        try{
+            return res.status(200).json({
+                erro: false ,
+                mensagem: "Reservas recuperadas com sucesso",
+                reservas: reservas
+                })
+                }catch(error){
+                    return res.status(500).json({
+                        erro: true ,
+                        mensagem: "Erro ao buscar reservas",
+                        detalhe: error.message
+                    })
+                }
+    }
+
 
 }
 
