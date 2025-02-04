@@ -118,6 +118,46 @@ const jwt = require("jsonwebtoken")
             }
         }
 
+            //nova rota
+        static async atualizarMesa(req, res) {
+            const { id, codigo, n_lugares } = req.body;
+            if (!id || !codigo || !n_lugares){
+                return res.status(401).json
+                (
+                {
+                    erro: true,
+                    mensagem: 'Dados inálidos'
+                })
+            }
+        
+            try {
+                const mesa = await prisma.mesa.update({
+                    where :{
+                        id: parseInt(id)
+                    },
+                    data:{
+                        codigo: codigo,
+                        n_lugares: parseInt(n_lugares)
+                    }
+                });
+                
+                    return res.status(201).json({
+                        erro: false,
+                        mensagem: "Mesa atualizada",
+                        
+                    });
+                
+               
+            } catch (error) {
+                return res.status(500).json({
+                    erro: true,
+                    mensagem: "Erro ao cadastrar a mesa. Tente novamente mais tarde.",
+                    detalhe: error.message,
+                });
+            }
+        }
+    
+
 
         }
 
