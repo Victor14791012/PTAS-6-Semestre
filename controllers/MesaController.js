@@ -137,7 +137,7 @@ const jwt = require("jsonwebtoken")
                     },
                     data:{
                         codigo: codigo,
-                        n_lugares: parseInt(n_lugares)
+                        n_lugares: n_lugares
                     }
                 });
                 

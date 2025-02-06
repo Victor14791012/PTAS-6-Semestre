@@ -139,7 +139,10 @@ static async login(req, res) {
   error: false,
   mensagem: 'Usuário logado',
   token: token,
-  nome: usuario.nome 
+  nome: usuario.nome ,
+  email: usuario.email,
+  id: usuario.id,
+  tipo: usuario.tipo
 });
 
 }
