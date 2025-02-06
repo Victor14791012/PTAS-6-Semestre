@@ -45,7 +45,7 @@ const jwt = require("jsonwebtoken")
                 const mesa = await prisma.mesa.create({
                     data: {
                         codigo: codigo,
-                        n_lugares: n_lugares
+                        n_lugares:  Number(n_lugares)
                     }
                 })
                 console.log(mesa);
